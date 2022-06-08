@@ -18,6 +18,6 @@ public class MilitaryCard : Card
     {
         Debug.Log("Use military card");
 
-        characteristics.HireMilitaries(_countMilitaries);
+        characteristics.HireMilitaries(_countMilitaries, _laborersCost);
     }
 }

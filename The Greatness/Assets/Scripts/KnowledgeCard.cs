@@ -18,6 +18,6 @@ public class KnowledgeCard : Card
     {
         Debug.Log("Use knowledge card");
 
-        characteristics.BuildScientificCenter(_countScientists);
+        characteristics.BuildScientificCenter(_countScientists, _dollarsCost);
     }
 }

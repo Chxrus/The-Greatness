@@ -18,6 +18,6 @@ public class DollarCard : Card
     {
         Debug.Log("Use dollar card");
 
-        characteristics.BuildFactory(_countFactories);
+        characteristics.BuildFactory(_countFactories, _knowledgeCost);
     }
 }

@@ -46,22 +46,34 @@ public class Characteristics : MonoBehaviour
     }
 
 
-    public void BuildFactory(int count)
+    public void BuildFactory(int count, int cost)
     {
+        if (cost > _knowledge)
+            return;
+
+        _knowledge -= cost;
         _dollarsPerHour += count;
         _dollarsPerHourText.text = $"{_dollarsPerHour}/h";
         Debug.Log($"{count} factories were built");
     }
 
-    public void BuildScientificCenter(int count)
+    public void BuildScientificCenter(int count, int cost)
     {
+        if (cost > _dollars)
+            return;
+
+        _dollars -= cost;
         _knowledgePerHour += count;
         _knowledgePerHourText.text = $"{_knowledgePerHour}/h";
         Debug.Log($"{count} scientific centers were built");
     }
 
-    public void HireMilitaries(int count)
+    public void HireMilitaries(int count, int cost)
     {
+        if (cost > _dollarsPerHour)
+            return;
+
+        _dollarsPerHour -= cost;
         _militariesPerHour += count;
         _militariesPerHourText.text = $"{_militariesPerHour}/h";
         Debug.Log($"{count} militaries were hired");
