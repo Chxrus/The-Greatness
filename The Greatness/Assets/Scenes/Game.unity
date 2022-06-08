@@ -498,6 +498,8 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
+  - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -528,6 +530,9 @@ MonoBehaviour:
   _dollars: 0
   _knowledge: 0
   _militaries: 0
+  _dollarsPerHour: 0
+  _knowledgePerHour: 0
+  _militariesPerHour: 0
   _dollarsText: {fileID: 427652509}
   _knowledgeText: {fileID: 1776572777}
   _militariesText: {fileID: 1549722559}
@@ -588,6 +593,38 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efacda66358c6464ba6a03c7c49c950e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timeSlider: {fileID: 1112181565}
+  _waveText: {fileID: 1218173767}
+  _timeText: {fileID: 1070286181}
+  _wave: 0
+  _hours: 0
+--- !u!114 &519420034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c88394ab67cdab94f83fbc2013b380bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timeIndicator: {fileID: 812672935}
+  _header: {fileID: 1227962597}
+  offset: {x: -60, y: -15, z: 0}
 --- !u!1 &812672935
 GameObject:
   m_ObjectHideFlags: 0
@@ -600,7 +637,7 @@ GameObject:
   - component: {fileID: 812672938}
   - component: {fileID: 812672937}
   m_Layer: 5
-  m_Name: Time Background
+  m_Name: Time Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -623,7 +660,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 60, y: 14.99999}
+  m_AnchoredPosition: {x: 0, y: 15}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &812672937
@@ -1317,8 +1354,8 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1227962598}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
-  m_WholeNumbers: 0
+  m_MaxValue: 24
+  m_WholeNumbers: 1
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
