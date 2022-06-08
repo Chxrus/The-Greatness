@@ -9,6 +9,7 @@ public class GameCycle : MonoBehaviour
 {
     private Characteristics _characteristics;
     private TimeIndicator _timeIndicator;
+    private CardConveyor _cardConveyor;
 
     [SerializeField] private Slider _timeSlider;
 
@@ -23,6 +24,7 @@ public class GameCycle : MonoBehaviour
     {
         _characteristics = GetComponent<Characteristics>();
         _timeIndicator = GetComponent<TimeIndicator>();
+        _cardConveyor = GetComponent<CardConveyor>();
     }
 
     private void Start()
@@ -54,7 +56,10 @@ public class GameCycle : MonoBehaviour
 
             _timeSlider.value = _hours;
             _timeIndicator.UpdatePosition();
+
             _characteristics.NextHour();
+            _cardConveyor.AddCard();
+            
         }
     }
 }

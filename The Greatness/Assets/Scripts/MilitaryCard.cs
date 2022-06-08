@@ -17,5 +17,7 @@ public class MilitaryCard : Card
     public override void Use(Characteristics characteristics)
     {
         Debug.Log("Use military card");
+
+        characteristics.HireMilitaries(_countMilitaries);
     }
 }

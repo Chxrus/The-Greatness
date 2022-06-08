@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b022cc7f2ccf6841901c4b276047095, type: 3}
-  m_Name: New DollarCard
+  m_Name: DollarCard 1
   m_EditorClassIdentifier: 
-  _icon: {fileID: 21300000, guid: 54f7a74d5654a084a810ff05f6a3ef7f, type: 3}
-  _description: 
+  _icon: {fileID: 21300000, guid: 9cc9860ec5023d34593afc9531af8e48, type: 3}
+  _description: +5 DPH, -10 K
   _color: {r: 0.5568628, g: 1, b: 0.68235296, a: 1}
-  _knowledgeCost: 0
-  _countFactories: 0
+  _knowledgeCost: 10
+  _countFactories: 5

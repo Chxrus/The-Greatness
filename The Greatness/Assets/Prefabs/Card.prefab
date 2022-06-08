@@ -226,7 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a7318dc63452c74e997a32fd0f76bdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _card: {fileID: 11400000, guid: e7b0677d91050c546a01de1e944fcbb6, type: 2}
+  _card: {fileID: 0}
   _icon: {fileID: 1044763161584778696}
   _background: {fileID: 730456834453937564}
   _description: {fileID: 9188426984098276928}
@@ -314,13 +314,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.12941177, g: 0.14509805, b: 0.16078432, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5826e8789679ae94b9dbad24007ee1ac, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

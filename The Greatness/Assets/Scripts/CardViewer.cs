@@ -16,11 +16,15 @@ public class CardViewer : MonoBehaviour
             InitializeCard(_card);
     }
 
-    private void InitializeCard(Card card)
+    public void InitializeCard(Card card)
     {
+        _card = card;
+
         _icon.sprite = card.Icon;
         _description.text = card.Description;
         _background.color = card.Color;
+
+        _icon.SetNativeSize();  
     }
 
     private void OnMouseDown()

@@ -17,5 +17,7 @@ public class KnowledgeCard : Card
     public override void Use(Characteristics characteristics)
     {
         Debug.Log("Use knowledge card");
+
+        characteristics.BuildScientificCenter(_countScientists);
     }
 }
