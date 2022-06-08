@@ -16,6 +16,10 @@ public class Characteristics : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _knowledgeText;
     [SerializeField] private TextMeshProUGUI _militariesText;
 
+    [SerializeField] private TextMeshProUGUI _dollarsPerHourText;
+    [SerializeField] private TextMeshProUGUI _knowledgePerHourText;
+    [SerializeField] private TextMeshProUGUI _militariesPerHourText;
+
     private void Awake()
     {
         AddDollars(100);
@@ -45,18 +49,21 @@ public class Characteristics : MonoBehaviour
     public void BuildFactory(int count)
     {
         _dollarsPerHour += count;
+        _dollarsPerHourText.text = $"{_dollarsPerHour}/h";
         Debug.Log($"{count} factories were built");
     }
 
     public void BuildScientificCenter(int count)
     {
         _knowledgePerHour += count;
+        _knowledgePerHourText.text = $"{_knowledgePerHour}/h";
         Debug.Log($"{count} scientific centers were built");
     }
 
     public void HireMilitaries(int count)
     {
         _militariesPerHour += count;
+        _militariesPerHourText.text = $"{_militariesPerHour}/h";
         Debug.Log($"{count} militaries were hired");
     }
 
