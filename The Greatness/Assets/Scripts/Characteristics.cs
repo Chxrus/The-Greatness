@@ -2,8 +2,13 @@
 using UnityEngine;
 using TMPro;
 
+[RequireComponent(typeof(Barrack))]
 public class Characteristics : MonoBehaviour
 {
+    [Header("Classes")]
+    [SerializeField] private Barrack _barrack;
+    
+    [Header("Integer")]
     [SerializeField] private int _dollars;
     [SerializeField] private int _knowledge;
     [SerializeField] private int _militaries;
@@ -12,6 +17,7 @@ public class Characteristics : MonoBehaviour
     [SerializeField] private int _knowledgePerHour;
     [SerializeField] private int _militariesPerHour;
 
+    [Header("TMPro")]
     [SerializeField] private TextMeshProUGUI _dollarsText;
     [SerializeField] private TextMeshProUGUI _knowledgeText;
     [SerializeField] private TextMeshProUGUI _militariesText;
@@ -19,6 +25,7 @@ public class Characteristics : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _dollarsPerHourText;
     [SerializeField] private TextMeshProUGUI _knowledgePerHourText;
     [SerializeField] private TextMeshProUGUI _militariesPerHourText;
+
 
     private void Awake()
     {
@@ -43,6 +50,8 @@ public class Characteristics : MonoBehaviour
     {
         _militaries += count;
         _militariesText.text = _militaries.ToString();
+
+        _barrack.HireMilitary(count);
     }
 
 
@@ -51,7 +60,7 @@ public class Characteristics : MonoBehaviour
         if (cost > _knowledge)
             return;
 
-        _knowledge -= cost;
+        AddKnowledge(-cost);
         _dollarsPerHour += count;
         _dollarsPerHourText.text = $"{_dollarsPerHour}/h";
         Debug.Log($"{count} factories were built");
@@ -62,7 +71,7 @@ public class Characteristics : MonoBehaviour
         if (cost > _dollars)
             return;
 
-        _dollars -= cost;
+        AddDollars(-cost);
         _knowledgePerHour += count;
         _knowledgePerHourText.text = $"{_knowledgePerHour}/h";
         Debug.Log($"{count} scientific centers were built");
@@ -74,8 +83,11 @@ public class Characteristics : MonoBehaviour
             return;
 
         _dollarsPerHour -= cost;
-        _militariesPerHour += count;
-        _militariesPerHourText.text = $"{_militariesPerHour}/h";
+        _dollarsPerHourText.text = $"{_dollarsPerHour}/h";
+
+        //_militariesPerHour += count;
+        //_militariesPerHourText.text = $"{_militariesPerHour}/h";
+        AddMilitaries(count);
         Debug.Log($"{count} militaries were hired");
     }
 
@@ -83,6 +95,5 @@ public class Characteristics : MonoBehaviour
     {
         AddDollars(_dollarsPerHour);
         AddKnowledge(_knowledgePerHour);
-        AddMilitaries(_militariesPerHour);
     }
 }
