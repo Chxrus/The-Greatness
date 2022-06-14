@@ -16,19 +16,16 @@ public class MoveState : State
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("Entered the moving state");
     }
 
     public override void Exit()
     {
         base.Exit();
-        Debug.Log("Leave the moving state");
     }
 
     public override void Update()
     {
         base.Update();
-        Debug.Log("In the moving state");
         Moving();
     }
 
@@ -50,6 +47,7 @@ public class MoveState : State
         {
             if (_military.transform.position != _target)
             {
+                _military.transform.up = _target - _military.transform.position;
                 _military.transform.position = Vector3.MoveTowards(_military.transform.position, _target, _military.Speed * Time.deltaTime);
             }
             else

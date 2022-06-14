@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CircleCollider2D))]
 public class Military: MonoBehaviour
 {
     [Header("UI")]
@@ -20,13 +21,29 @@ public class Military: MonoBehaviour
     private GameObject _enemy;
     public List<string> EnemyTags => _enemyTags;
     public float Speed => _speed;
-    public int Health => _health; 
-    public float RadiusVisibility => _radiusVisibility;
     public int MinDamage => _minDamage; 
     public int MaxDamage => _maxDamage;
     public GameObject Enemy => _enemy;
 
     public State currentState;
+
+    private void OnValidate()
+    {
+        if (_speed <= 0)
+            _speed = 1;
+
+        if (_health <= 0)
+            _health = 10;
+
+        if (_minDamage <= 0)
+            _minDamage = 1;
+
+        if (_maxDamage <= 1)
+            _maxDamage = 2;
+
+        if (_radiusVisibility <= 1)
+            _radiusVisibility = 3;
+    }
 
     private void Start()
     {
@@ -48,6 +65,7 @@ public class Military: MonoBehaviour
         transform.eulerAngles = randomAngle;
         GetComponent<SpriteRenderer>().color = _defaultColor;
         Debug.DrawRay(transform.position, randomAngle * _radiusVisibility, _defaultColor);
+        GetComponent<CircleCollider2D>().radius = _radiusVisibility;
     }
 
     public void TakeDamage(int damage)
@@ -64,7 +82,6 @@ public class Military: MonoBehaviour
         {
             _enemy = collision.gameObject;
             _stateMachine.CurrentState = new AttackState(this);
-
         }
     }
 

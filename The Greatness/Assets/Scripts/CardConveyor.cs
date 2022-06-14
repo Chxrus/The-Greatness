@@ -11,7 +11,6 @@ public class CardConveyor : MonoBehaviour
         int randomNumber = Random.Range(0, _cardsList.Length);
         GameObject cardPrefab = Instantiate(_prefab, _container);
         cardPrefab.GetComponent<CardViewer>().InitializeCard(_cardsList[randomNumber]);
-
         Destroy(cardPrefab, 25f);
     }
 }

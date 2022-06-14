@@ -101,9 +101,9 @@ MonoBehaviour:
   - Military
   _defaultColor: {r: 1, g: 0.58101726, b: 0.5568628, a: 1}
   _attackColor: {r: 1, g: 0.2094256, b: 0.16509432, a: 1}
-  _speed: 1
+  _speed: 2.25
   _health: 16
-  _radiusVisibility: 6
+  _radiusVisibility: 5
   _minDamage: 1
   _maxDamage: 2
 --- !u!58 &8405990173615857547
@@ -121,7 +121,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 3
+  m_Radius: 10
 --- !u!50 &-1596831775397272934
 Rigidbody2D:
   serializedVersion: 4

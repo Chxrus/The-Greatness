@@ -100,9 +100,9 @@ MonoBehaviour:
   - Enemy
   _defaultColor: {r: 1, g: 0.8745099, b: 0.5568628, a: 1}
   _attackColor: {r: 1, g: 0.7176471, b: 0, a: 1}
-  _speed: 1.5
+  _speed: 2.25
   _health: 10
-  _radiusVisibility: 5
+  _radiusVisibility: 3
   _minDamage: 2
   _maxDamage: 5
 --- !u!58 &4011722966398149742

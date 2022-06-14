@@ -12,6 +12,7 @@ public class Base : MonoBehaviour
     public void TakeDamage(int damage)
     {
         _health -= damage;
+        Debug.Log($"Health: {_health}");
 
         if (_health <= 0)
         {

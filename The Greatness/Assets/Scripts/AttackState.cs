@@ -12,20 +12,16 @@ public class AttackState : State
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("Entered the attacking state");
     }
 
     public override void Exit()
     {
         base.Exit();
-        Debug.Log("Leaving the attacking state");
     }
 
     public override void Update()
     {
         base.Update();
-        Debug.Log("In the attacking state");
-
         Attacking();
     }
 
@@ -36,6 +32,8 @@ public class AttackState : State
         if (_military.Enemy != null)
         {
             Vector3 target = _military.Enemy.transform.position;
+            _military.transform.up = target - _military.transform.position;
+
             _military.transform.position = Vector3.MoveTowards(_military.transform.position, target, _military.Speed * Time.deltaTime);
 
             if (_military.transform.position == _military.Enemy.transform.position)

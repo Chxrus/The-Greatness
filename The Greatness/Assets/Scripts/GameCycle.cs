@@ -3,23 +3,17 @@ using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 
-[RequireComponent(typeof(Characteristics))]
-[RequireComponent(typeof(TimeIndicator))]
-[RequireComponent(typeof(EnemySpawner))]
 public class GameCycle : MonoBehaviour
 {
-    private Characteristics _characteristics;
-    private TimeIndicator _timeIndicator;
-    private CardConveyor _cardConveyor;
-    private EnemySpawner _enemySpawner;
+    [Header("Classes")]
+    [SerializeField] private GameUI _gameui;
+    [SerializeField] private Characteristics _characteristics;
+    [SerializeField] private TimeIndicator _timeIndicator;
+    [SerializeField] private CardConveyor _cardConveyor;
+    [SerializeField] private EnemySpawner _enemySpawner;
 
-    [SerializeField] private Slider _timeSlider;
-
-    [SerializeField] private TextMeshProUGUI _waveText;
-    [SerializeField] private TextMeshProUGUI _timeText;
-    [SerializeField] private int _wave;
-    [SerializeField] private int _hours;
-
+    private int _wave;
+    private int _hours;
     private bool _isGameRunning = true;
 
     private void Awake()
@@ -58,23 +52,22 @@ public class GameCycle : MonoBehaviour
 
             if (_hours < 10)
             {
-                _timeText.text = $"0{_hours.ToString()}:00";
+                _gameui.UpdateTime($"0{_hours.ToString()}:00");
             }
             else if (_hours >= 10 && _hours <= 24)
             {
-                _timeText.text = $"{_hours.ToString()}:00";
+                _gameui.UpdateTime($"{_hours.ToString()}:00");
             }
             else if (_hours > 24)
             {
                 _hours = 0;
                 _wave += 1;
-                _waveText.text = $"Wave #{_wave.ToString()}";
+                _gameui.UpdateWave($"Wave #{_wave.ToString()}");
                 NextWave();
             }
 
-            _timeSlider.value = _hours;
+            _gameui.UpdateTimeSlider(_hours);
             _timeIndicator.UpdatePosition();
-
             NextHour();
         }
     }
