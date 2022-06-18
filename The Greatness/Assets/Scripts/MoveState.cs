@@ -3,7 +3,6 @@
 public class MoveState : State
 {
     private Military _military;
-    private bool _isMoving;
     private Vector3 _startPosition;
     private Vector3 _target;
 
@@ -34,14 +33,14 @@ public class MoveState : State
 
         _military.WalkColor();
 
-        if (!_isMoving)
+        if (!_military.isMoving)
         {
             int randomHorizontal = Random.Range(-5, 5);
             int randomVertical = Random.Range(-5, 5);
             _target = new Vector3(_startPosition.x + randomHorizontal, _startPosition.y + randomVertical, 6);
 
             if ((_target.y > -7 && _target.y < 7) && (_target.x > -10 && _target.x < 10))
-                _isMoving = true;
+                _military.isMoving = true;
         }
         else
         {
@@ -53,9 +52,8 @@ public class MoveState : State
             else
             {
                 _startPosition = _military.transform.position;
-                _isMoving = false;
+                _military.isMoving = false;
             }
         }
     }
-
 }

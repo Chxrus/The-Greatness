@@ -8,6 +8,7 @@ public class Military: MonoBehaviour
     [SerializeField] private List<string> _enemyTags;
     [SerializeField] private Color _defaultColor;
     [SerializeField] private Color _attackColor;
+    [SerializeField] private LayerMask _layerMask;
 
     [Header("Characteristics")]
     [SerializeField] private float _speed;
@@ -26,6 +27,8 @@ public class Military: MonoBehaviour
     public GameObject Enemy => _enemy;
 
     public State currentState;
+
+    public bool isMoving = false;
 
     private void OnValidate()
     {
@@ -57,15 +60,29 @@ public class Military: MonoBehaviour
     private void Update()
     {
         _stateMachine.CurrentState.Update();
+
+        RaycastHit2D hit = Physics2D.CircleCast(transform.position, _radiusVisibility, transform.position, 0, _layerMask);
+        Debug.DrawRay(transform.position, Vector3.up * _radiusVisibility, _defaultColor);
+        if (hit)
+        {
+            if (_enemyTags.Contains(hit.collider.tag))
+            {
+                if (!isMoving)
+                {
+                    _stateMachine.ChangeState(new AttackState(this, hit.collider.gameObject));
+                }
+            }
+        }
+    }
+
+    public void ResetState()
+    {
+        _stateMachine.ChangeState(new MoveState(this));
     }
 
     private void Initialize()
     {
-        Vector3 randomAngle = new Vector3(transform.rotation.x, transform.rotation.y, Random.Range(-90, 90));
-        transform.eulerAngles = randomAngle;
         GetComponent<SpriteRenderer>().color = _defaultColor;
-        Debug.DrawRay(transform.position, randomAngle * _radiusVisibility, _defaultColor);
-        GetComponent<CircleCollider2D>().radius = _radiusVisibility;
     }
 
     public void TakeDamage(int damage)
@@ -74,21 +91,6 @@ public class Military: MonoBehaviour
 
         if (_health <= 0)
             Destroy(gameObject);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (_enemyTags.Contains(collision.tag))
-        {
-            _enemy = collision.gameObject;
-            _stateMachine.CurrentState = new AttackState(this);
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (_enemyTags.Contains(collision.tag))
-            _stateMachine.CurrentState = new MoveState(this);
     }
 
     public void AttackColor()
@@ -101,5 +103,8 @@ public class Military: MonoBehaviour
         GetComponent<SpriteRenderer>().color = _defaultColor;
     }
 
-
+    public void Destroy()
+    {
+        Destroy(gameObject);
+    }
 }

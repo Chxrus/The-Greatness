@@ -1,4 +1,5 @@
-﻿using UnityEngine.UI;
+﻿using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 
@@ -21,6 +22,21 @@ public class GameUI : MonoBehaviour
     [SerializeField] private Slider _timeSlider;
     [SerializeField] private TextMeshProUGUI _waveText;
     [SerializeField] private TextMeshProUGUI _timeText;
+
+    [Header("Game Over")]
+    [SerializeField] private GameObject _windowGameOver;
+
+    public void ShowGameOver()
+    {
+        _windowGameOver.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    public void RestartGame()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("Game");
+    }
 
     public void ShowMenu()
     {

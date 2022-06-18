@@ -2,6 +2,7 @@
 
 public class Base : MonoBehaviour
 {
+    [SerializeField] private GameUI _gameUI;
     [SerializeField] private int _health;
 
     private void Awake()
@@ -12,11 +13,11 @@ public class Base : MonoBehaviour
     public void TakeDamage(int damage)
     {
         _health -= damage;
-        Debug.Log($"Health: {_health}");
-
+        _gameUI.UpdateBaseHealth(_health);
+        
         if (_health <= 0)
         {
-            Debug.LogError("Game Over!");
+            _gameUI.ShowGameOver();
             Destroy(gameObject);
         }
     }

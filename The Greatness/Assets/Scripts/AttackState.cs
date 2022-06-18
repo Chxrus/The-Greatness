@@ -3,20 +3,24 @@
 public class AttackState : State
 {
     private Military _military;
+    private GameObject _target;
 
-    public AttackState(Military military)
+    public AttackState(Military military, GameObject target)
     {
         _military = military;
+        _target = target;
     }
 
     public override void Enter()
     {
         base.Enter();
+        _military.isMoving = true;
     }
 
     public override void Exit()
     {
         base.Exit();
+        _military.isMoving = false;
     }
 
     public override void Update()
@@ -29,21 +33,24 @@ public class AttackState : State
     {
         _military.AttackColor();
 
-        if (_military.Enemy != null)
+        if (_target == null)
         {
-            Vector3 target = _military.Enemy.transform.position;
-            _military.transform.up = target - _military.transform.position;
-
-            _military.transform.position = Vector3.MoveTowards(_military.transform.position, target, _military.Speed * Time.deltaTime);
-
-            if (_military.transform.position == _military.Enemy.transform.position)
+            _military.isMoving = false;
+            _military.ResetState();
+        }
+        else
+        {
+            _military.transform.position = Vector3.MoveTowards(_military.transform.position, _target.transform.position, _military.Speed * Time.deltaTime);
+            if (_military.transform.position == _target.transform.position)
             {
-                if (_military.Enemy.tag == "Base")
-                    _military.Enemy.GetComponent<Base>().TakeDamage(1);
+                if (_target.tag == "Base")
+                {
+                    _target.GetComponent<Base>().TakeDamage(1);
+                    _military.Destroy();
+                }
                 else
-                    _military.Enemy.GetComponent<Military>().TakeDamage(Random.Range(_military.MinDamage, _military.MaxDamage));
+                    _target.GetComponent<Military>().TakeDamage(Random.Range(_military.MinDamage, _military.MaxDamage));
             }
         }
     }
-
 }
